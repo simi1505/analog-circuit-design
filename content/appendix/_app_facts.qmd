@@ -1,0 +1,49 @@
+::: {.content-hidden}
+Copyright (C) 2024-2025 Harald Pretl and co-authors (harald.pretl@jku.at)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+:::
+
+# Appendix: Fast Analytical Circuit Techniques {#sec-facts}
+
+Grundstein legte Middlebrook und wurde dann erweitert:
+- Ali Hajimiri - Generalized Time- and Transfer-Constant Circuit Analysis: https://ieeexplore.ieee.org/document/5340556/citations?tabFilter=papers#citations
+
+Book:
+- Christophe P. Basso - Linear Circuit Transfer Functions: An Introduction to Fast Analytical Techniques
+
+## Transfer Functions
+- Time Constants
+- Low-Entropy Transfer Functions
+    - Second-Order Polynomial Forms
+    - Low-Q Approximation for Second-Order Polynomials
+    - Approximation of Third-Order Polynomials
+- Generalized First-Order Transfer Function
+- 3-step technique
+- Null Double Injection (NDI)
+- Network Excitation
+
+## Extra Element Theorem
+ToDo
+
+## 1st-order, 2nd-order and higher-order transfer functions
+ToDo
+
+## Example 1
+simple passive 1st order example
+
+## Example 2
+third order RC filter --> compare with brute-force approach (only outline how it would be done)
+
+## Example 3
+2nd-order MFB filter --> compare with brute-force approach in filter chapter
