@@ -56,6 +56,7 @@ format:
 {{< include /content/ota_improved/_sec_improved_ota.qmd >}}
 {{< include /content/bias/_sec_biasing.qmd >}}
 {{< include /content/ota_diff/_sec_differential_ota.qmd >}}
+{{< include /content/ota_inverter_based/_sec_inverter_based_ota.qmd >}}
 
 # An RC-OPAMP Filter
 
