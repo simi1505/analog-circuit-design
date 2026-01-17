@@ -57,6 +57,8 @@ Books:
 - Compare these filters: Advantages / Disadvantage
 
 ## Design of 2nd-order MFB Lowpass Filter
+- Behzad Razavi - The Design of a Biquadratic Filter [The Analog Mind]: https://ieeexplore.ieee.org/document/10410055
+- Behzad Razavi - The Biquadratic Filter [A Circuit for All Seasons]: https://ieeexplore.ieee.org/document/8390964
 - derive RC transfer function
 - Koeffizientenvergleich with transfer function of 2nd order lowpass
 - derive equations (for biquads, these formulas exist)
