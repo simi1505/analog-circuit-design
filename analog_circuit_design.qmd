@@ -56,11 +56,7 @@ format:
 {{< include /content/ota_improved/_sec_improved_ota.qmd >}}
 {{< include /content/bias/_sec_biasing.qmd >}}
 {{< include /content/ota_diff/_sec_differential_ota.qmd >}}
-
-# An RC-OPAMP Filter
-
-To be added in a future release.
-
+{{< include /content/active_filters/_sec_active_filters.qmd >}}
 {{< include /content/summary/_sec_summary.qmd >}}
 {{< include /content/appendix/_app_middlebrook_method.qmd >}}
 {{< include /content/appendix/_app_circuit_theorems.qmd >}}
