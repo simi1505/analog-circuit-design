@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 :::
 
-# Appendix: Root Locus Analysis
+# Appendix: Root Locus Analysis {#sec-root-locus-analysis}
 In control and stability theory, root locus analysis, developed by Walter R. Evans, is a graphical method for examining how the roots of a linear time-invariant (LTI) system change in the complex $s$-plane with variation of a certain system parameter, commonly a gain within a feedback system.
 
 - show on simple circuit
