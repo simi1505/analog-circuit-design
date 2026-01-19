@@ -48,6 +48,7 @@ Books:
 - Lowpass-Bandpass transformation
 
 ## Filter Topologies
+- https://www.changpuak.ch/electronics/downloads/sloa088.pdf
 - Sallen-Key (SK) Filter
 - Multiple-Feedback (MFB) Filter
 - Tow-Thomas (TT) Filter
