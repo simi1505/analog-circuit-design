@@ -51,15 +51,15 @@ Books:
 - https://www.changpuak.ch/electronics/downloads/sloa088.pdf
 - Sallen-Key (SK) Filter
 - Multiple-Feedback (MFB) Filter
-- Tow-Thomas (TT) Filter
+- Tow-Thomas (TT) Filter (needs three op. amps (or two in fully-differential form) but is more programmable in terms of gain, cutoff frequency and quality factor)
 - GIC Filter
 - Akerberg-Moosberg Filter
 - Twin-T Notch Filter
+- Boctor Filter: https://ieeexplore.ieee.org/document/1083984
+- Single's Amplifier Biquad (SAB) filter
 - Compare these filters: Advantages / Disadvantage
 
 ## Design of 2nd-order MFB Lowpass Filter
-- Behzad Razavi - The Design of a Biquadratic Filter [The Analog Mind]: https://ieeexplore.ieee.org/document/10410055
-- Behzad Razavi - The Biquadratic Filter [A Circuit for All Seasons]: https://ieeexplore.ieee.org/document/8390964
 - derive RC transfer function
 - Koeffizientenvergleich with transfer function of 2nd order lowpass
 - derive equations (for biquads, these formulas exist)
@@ -67,10 +67,16 @@ Books:
 - simulate filter in Xschem with 5T-OTA (single-ended)
 - extend to fully-differential version (use inverter-based OTA above)
 
+## Design of 2nd-order Tow-Thomas Lowpass Filter
+- single-ended & fully differential
+- Behzad Razavi - The Design of a Biquadratic Filter [The Analog Mind]: https://ieeexplore.ieee.org/document/10410055
+- Behzad Razavi - The Biquadratic Filter [A Circuit for All Seasons]: https://ieeexplore.ieee.org/document/8390964
+
 explain that this cookbook can be used for any other filter type as well. the well-known filters have equations --> just look into the table and plug in the coeficients.
 
 ## Higher-Order Active Filters
 - This filter can also be extended to a 3rd-order MFB with only one OTA --> see Simon Paper
+- https://ieeexplore.ieee.org/document/1084042
 
 - Cascading biquads and using coefficients tables
 
