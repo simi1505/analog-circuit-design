@@ -145,7 +145,7 @@ In order to get a differential circuit stable one often has to make the common-m
 In summary, stability investigations are critically important for differential circuits, and you should never forget to check for common-mode stability as well!
 :::
 
-Instead of a common-mode regulation loop (and all its complications regarding stability) often a common-mode setting is sufficient (after all, a somewhat imprecise setting of the dc points is good enough). A common-mode setting has the advantage that no error amplifier is required. We will also use this approach of a common-mode loop setting in the adapted differential OTA shown in @fig-diff-ota-resload-miller-cm.
+Instead of a common-mode regulation loop (and all its complications regarding stability) often a common-mode setting is sufficient (after all, a somewhat imprecise setting of the dc points is good enough). A common-mode setting has the advantage that no error amplifier is required. We will also use this approach of a common-mode setting in the adapted differential OTA shown in @fig-diff-ota-resload-miller-cm.
 
 {{< include /content/ota_diff/_fig_ota_diff_twostage_miller_cm.qmd >}}
 
