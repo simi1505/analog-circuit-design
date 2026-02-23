@@ -258,7 +258,7 @@ We will derive the current mirror matching of a pair of resistively-degenerated 
 
 {{< include /content/curmir_improved/_fig_curmir_matching.qmd >}}
 
-The standard deviation $\sigma$ of the output current difference, normalized to the current, is given by [@Gray_Meyer_5th_ed]
+The variance $\sigma^2$ of the output current difference, normalized to the current, is given by [@Gray_Meyer_5th_ed]
 
 $$
 \begin{split}
@@ -290,7 +290,7 @@ $$ {#eq-mosfet-mismatch-kp-alt}
 
 where $\sdev[\Delta W]$ and $\sdev[\Delta L]$ are the process-dependent mismatch parameters for the width $W$ and length $L$, respectively, and $\sdev[\Delta \mu / \mu]$ is the mobility mismatch parameter.
 
-The standard deviations of the components of the SG13G2 process are summarized in @tbl-sg13g2-mismatch. For mismatch calculations we can assume them as uncorrelated.
+The standard deviations of the components of the SG13G2 process are summarized in @tbl-sg13g2-mismatch. For mismatch calculations we can assume them to be uncorrelated.
 
 | Component             | Matching Parameter                      | Value              |
 |:----------------------|-----------------------------------------|--------------------|
@@ -327,30 +327,30 @@ indicating that now the current matching of the degenerated current mirror is de
 ::: {.callout-note title="Current Mirror Matching Calculation"}
 Let us now calculate the current mirror matching of the simple current mirror. Using @eq-curmir-matching-nodeg, and using the sizing values of $\gm / \ID = 5\,\text{V}^{-1}$, $W = 10\,\mu\text{m}$, and $L = 5\,\mu\text{m}$, we can calculate the standard deviation of the transconductance parameter mismatch using @eq-mosfet-mismatch-kp-alt and @tbl-sg13g2-mismatch:
 $$
-\sdev[\frac{\Delta K}{K}] = \sqrt{ \left( \frac{4\,\text{nm}}{10\,\mu\text{m}} \right)^2 + \left( \frac{2\,\text{nm}}{5\,\mu\text{m}} \right)^2 + \left( \frac{0.5\,\%\mu\text{m}}{\sqrt{10\,\mu\text{m} \cdot 5\,\mu\text{m}}} \right)^2 } = 0.08\,\%.
+\sdev[\frac{\Delta K}{K}] = \sqrt{ \left( \frac{4\,\text{nm}}{10\,\mu\text{m}} \right)^2 + \left( \frac{2\,\text{nm}}{5\,\mu\text{m}} \right)^2 + \left( \frac{0.5\,\%\mu\text{m}}{\sqrt{10\,\mu\text{m} \cdot 5\,\mu\text{m}}} \right)^2 } = 0.09\,\%.
 $$
 
 The standard deviation of the threshold voltage mismatch can be calculated using @eq-mosfet-mismatch-vth and @tbl-sg13g2-mismatch:
 $$
-\sdev[\Delta \Vth] = \frac{2\,\text{mV}\mu\text{m}}{\sqrt{10\,\mu\text{m} \cdot 5\,\mu\text{m}}} = 0.28\,\text{mV}.
+\sdev[\Delta \Vth] = \frac{3.9\,\text{mV}\mu\text{m}}{\sqrt{10\,\mu\text{m} \cdot 5\,\mu\text{m}}} = 0.55\,\text{mV}.
 $$
 
 Bringing both results into @eq-curmir-matching-nodeg, we get
 $$
-\sdev[\frac{\Delta \ID}{\ID}] = \sqrt{ (0.28\,\text{mV} \cdot 5\,\text{V}^{-1})^2 + (0.08\,\%)^2} \approx 0.16\,\%.
+\sdev[\frac{\Delta \ID}{\ID}] = \sqrt{ (0.55\,\text{mV} \cdot 5\,\text{V}^{-1})^2 + (0.09\,\%)^2} \approx 0.29\,\%.
 $$
- Comparing with the simulation results in @fig-curmir-mc for the basic current mirror, we can see that this matches quite well with the standard deviation of about $0.21\,\mu\text{A}/48.9\,\mu\text{A} = 0.43\,\%$ obtained from the Monte-Carlo simulation.
+ Comparing with the simulation results in @fig-curmir-mc for the basic current mirror, we can see that this gives a reasonable estimate compared to the standard deviation of about $0.21\,\mu\text{A}/48.9\,\mu\text{A} = 0.43\,\%$ obtained from the Monte-Carlo simulation. The remaining discrepancy is due to simplifications in the analytical model (e.g., the square-law approximation).
 
  Let us now calculate the current mirror matching of the resistively-degenerated current mirror. We can use @eq-curmir-matching-alt to analyze this configuration. We use the sizing values of $\gm / \ID = 10\,\text{V}^{-1}$, $W = 20\,\mu\text{m}$, and $L = 3\,\mu\text{m}$, for the MOSFET, and $V_\mathrm{deg} = 0.2\,\text{V}$, $L = 15\,\mu\text{m}$ / $W = 1\,\mu\text{m}$ for the used `rppd` resistor.
  
 The standard deviation of the transconductance parameter mismatch can be calculated as
 $$
-\sdev[\frac{\Delta K}{K}] = \sqrt{ \left( \frac{4\,\text{nm}}{20\,\mu\text{m}} \right)^2 + \left( \frac{2\,\text{nm}}{3\,\mu\text{m}} \right)^2 + \left( \frac{0.5\,\%\mu\text{m}}{\sqrt{20\,\mu\text{m} \cdot 3\,\mu\text{m}}} \right)^2 } = 0.07\,\%.
+\sdev[\frac{\Delta K}{K}] = \sqrt{ \left( \frac{4\,\text{nm}}{20\,\mu\text{m}} \right)^2 + \left( \frac{2\,\text{nm}}{3\,\mu\text{m}} \right)^2 + \left( \frac{0.5\,\%\mu\text{m}}{\sqrt{20\,\mu\text{m} \cdot 3\,\mu\text{m}}} \right)^2 } = 0.10\,\%.
 $$
 
 The standard deviation of the threshold voltage mismatch can be calculated as
 $$
-\sdev[\Delta \Vth] = \frac{2\,\text{mV}\mu\text{m}}{\sqrt{20\,\mu\text{m} \cdot 3\,\mu\text{m}}} = 0.26\,\text{mV}.
+\sdev[\Delta \Vth] = \frac{3.9\,\text{mV}\mu\text{m}}{\sqrt{20\,\mu\text{m} \cdot 3\,\mu\text{m}}} = 0.50\,\text{mV}.
 $$
 
 The standard deviation of the resistor mismatch can be calculated using @eq-resistor-mismatch and @tbl-sg13g2-mismatch:
@@ -362,10 +362,10 @@ Plugging these results into @eq-curmir-matching-alt, we get
 $$
 \begin{split}
 \var[\frac{\Delta \ID}{\ID}] =&
-\left( \frac{0.26\,\text{mV}}{0.1\,\text{V} + 0.2\,\text{V}} \right)^2 +
-\left( \frac{1}{1 + 0.2\,\text{V} \cdot 10\,\text{V}^{-1}} \cdot 0.07\,\% \right)^2 \\
+\left( \frac{0.50\,\text{mV}}{0.1\,\text{V} + 0.2\,\text{V}} \right)^2 +
+\left( \frac{1}{1 + 0.2\,\text{V} \cdot 10\,\text{V}^{-1}} \cdot 0.10\,\% \right)^2 \\
 & + \left( \frac{0.2\,\text{V} \cdot 10\,\text{V}^{-1}}{1 + 0.2\,\text{V} \cdot 10\,\text{V}^{-1}} \cdot 0.39\,\%\right)^2 \\
-=& (0.26\,\%)^2.
+=& (0.29\,\%)^2.
 \end{split}
 $$
 
