@@ -22,7 +22,7 @@ The first (simple) circuit which we will investigate is a MOSFET, where the gate
 
 Why look at a single-transistor circuit at all? By starting with the simplest possible circuit we can develop important skills in circuit analysis (setting up and calculating a small-signal model, calculating open-loop gain, calculating noise, etc.) and Xschem/ngspice simulation testbench creation. We safely assume that the Mona Lisa also was not Leonardo da Vinci's first painting, so let's start slow.
 
-This diode is usually biased by a current source, shown as $I_\mathrm{bias}$ in the figure. Depending on MOSFET sizing with $W$ and $L$, a certain gate-source voltage $\VGS$ will develop. This voltage can be used as a biasing voltage for other circuit parts, for example. For an exemplarily sized MOSFET the $\VGS = f(I_\mathrm{bias})$ characteristic is shown in @fig-mos-diode-simulation. Note that in this MOSFET diode configuration $\VDS = \VGS$.
+This diode is usually biased by a current source, shown as $I_\mathrm{bias}$ in the figure. Depending on MOSFET sizing with $W$ and $L$, a certain gate-source voltage $\VGS$ will develop. This voltage can be used as a biasing voltage for other circuit parts, for example. For a representative MOSFET sizing the $\VGS = f(I_\mathrm{bias})$ characteristic is shown in @fig-mos-diode-simulation. Note that in this MOSFET diode configuration $\VDS = \VGS$.
 
 ```{python}
 #| label: fig-mos-diode-simulation
@@ -90,7 +90,7 @@ Before continuing, please finish the previous exercise. Once you are done, compa
 4. Since we are looking at the graphs, we further find $\gamma = 0.84$, $V_\mathrm{ds,sat} = 0.18\,\text{V}$, and $f_\mathrm{co} \approx 15\,\text{MHz}$.
 5. In addition, we expect $\VGS \approx 0.6\,\text{V}$.
 
-An example Jupyter notebook to extract these values accurately you can find [here](./gmid/sizing_mosfet_diode.ipynb). An Xschem schematic for this exercise is provide [as well](./xschem/mosfet_diode_sizing.sch).
+You can find an example Jupyter notebook to accurately extract these values [here](./gmid/sizing_mosfet_diode.ipynb). An Xschem schematic for this exercise is provided [as well](./xschem/mosfet_diode_sizing.sch).
 :::
 
 ## MOSFET Diode Large-Signal Behavior
@@ -153,7 +153,7 @@ In the case of the MOSFET diode, $G(s) = 1$ and therefore $T(s) = H_\mathrm{ol}(
 
 {{< include /content/diode/_fig_feedback_system.qmd >}}
 
-Note that in the feedback system depicted above shows an inversion in the feedback path. Sometimes this inversion is also included in the definition of $G(s)$. Please be aware of this when reading literature, as different conventions exist.
+Note that the feedback system depicted above shows an inversion in the feedback path. Sometimes this inversion is also included in the definition of $G(s)$. Please be aware of this when reading literature, as different conventions exist.
 :::
 
 ::: {.callout-note title="Gain-Bandwidth Product in Feedback Systems"}
@@ -195,7 +195,7 @@ Inspecting @eq-mosfet-diode-openloop-gain we realize that:
 1. The dc gain $\gm / \gds$ is the self-gain of the MOSFET, so $20 \log_{10}(0.2 \cdot 10^{-3} / 9.6 \cdot 10 ^{-6}) = 26.4\,\text{dB}$.
 2. There is a pole at $\omega_\mathrm{p} = -\gds / \Cgs$, which is at $9.6 \cdot 10 ^{-6} / (2 \pi \cdot 1.4 \cdot 10^{-15}) = 1.1\,\text{GHz}$.
 
-With this single pole location in $T(s)$ this loop is perfectly stable at under all conditions (remember that a single pole results in a maximum phase shift of --90$^\circ$).
+With this single pole location in $T(s)$ this loop is perfectly stable under all conditions (remember that a single pole results in a maximum phase shift of --90$^\circ$).
 
 The question is now how to simulate this loop gain, i.e., how to break the loop open in simulation? In general there are various methods, as we can use artificially large (ideal) inductors and capacitors to break loops open and still establish the correct dc operating points for the ac loop analysis. This is called **Rosenstark's method** [@Rosenstark_1984]. However, mimicking the correct loading can be an issue, and requires a lot of careful consideration. 
 
@@ -273,9 +273,9 @@ $$ {#eq-mosfet-diode-noise-rms-simplified}
 Inspecting @eq-mosfet-diode-noise-rms-simplified we see our familiar $kT/C$ noise multiplied by the factor $\gamma$! 
 
 :::{.callout-tip title="Exercise: Total Output Noise of RC-Lowpass"}
-If you have never calculated this before then you should work through the following: Calculate the total output noise of an $RC$-lowpass filter. Formulate the transfer function in the Laplace domain, and put the eqivalent resistor noise voltage source at the input, calculate the transfer to the output, and then integrate the output PSD (like we did for the MOSFET diode noise).
+If you have never calculated this before then you should work through the following: Calculate the total output noise of an $RC$-lowpass filter. Formulate the transfer function in the Laplace domain, and put the equivalent resistor noise voltage source at the input, calculate the transfer to the output, and then integrate the output PSD (like we did for the MOSFET diode noise).
 
-You fill find that the output noise is
+You will find that the output noise is
 $$
 V_\mathrm{n,rms}^2 = \frac{k T}{C} 
 $$
