@@ -31,7 +31,7 @@ and
 $$
 Z_2 = \frac{Z}{1 - A^{-1}} = \frac{Z}{1 - V_\mathrm{A} / V_\mathrm{B}} 
 $$
-to arrive at an equivalent circuit, given that $A = V_\mathrm{B} / V_\mathrm{A}$ is the voltage gain between nodes A and B. A derivation of this theorem is relative straightforward considering the current through $Z$ when looking into the impedance from either node A or node B and calculating an equivalent impedance causing the same current.
+to arrive at an equivalent circuit, given that $A = V_\mathrm{B} / V_\mathrm{A}$ is the voltage gain between nodes A and B. A derivation of this theorem is relatively straightforward considering the current through $Z$ when looking into the impedance from either node A or node B and calculating an equivalent impedance causing the same current.
 
 Note that if $V_\mathrm{A} = V_\mathrm{B}$ then there is no current flow through $Z$, and accordingly the impedances $Z_1 = Z_2 = \infty$.
 
