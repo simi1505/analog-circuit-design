@@ -67,26 +67,26 @@ For our circuit design, the most important parameters of the available devices a
 | Silicided poly resistor      | `rsil`         | $R_\square=7\,\Omega \pm 10\%$, $\text{TC}_1=3100\,\text{ppm/K}$ |
 | Poly resistor                | `rppd`         | $R_\square=260\,\Omega \pm 10\%$, $\text{TC}_1=170\,\text{ppm/K}$ |
 | Poly resistor high           | `rhigh`        | $R_\square=1360\,\Omega \pm 15\%$, $\text{TC}_1=-2300\,\text{ppm/K}$ |
-| MIM capacitor                | `cap_cmim`     | $C'=1.5\,\text{fF}/\mu\text{m}^2 \pm 10\%$, $\text{VC}_1=-26\text{ppm/V}$, $\text{TC}_1=3.6\text{ppm/K}$, breakdown voltage $>15\,\text{V}$ |
+| MIM capacitor                | `cap_cmim`     | $C'=1.5\,\text{fF}/\mu\text{m}^2 \pm 10\%$, $\text{VC}_1=-26\,\text{ppm/V}$, $\text{TC}_1=3.6\,\text{ppm/K}$, breakdown voltage $>15\,\text{V}$ |
 | MOM capacitor                | n/a            | The metal stack is well-suited for MOM capacitors due to 5 thin metal layers, but no primitive capacitor device is available at this point. |
 
 : IHP SG13G2 devices {#tbl-sg13g2-devices}
 
 ## Schematic Entry Using Xschem
 
-[Xschem](https://xschem.sourceforge.io) is an open-source schematic entry tool with emphasis on integrated circuits. For up-to-date information of the many features of Xschem and the basic operation of it please look at the available [online documentation](https://xschem.sourceforge.io/stefan/xschem_man/xschem_man.html). Usage of Xschem will be learned with the first few basic examples, essentially using a single MOSFET. The usage model of Xschem is that the schematic is hierarchically drawn, and the simulation and evaluation statements are contained in the schematics. Further, Xschem offers embedded graphing, which we will mostly use.
+[Xschem](https://xschem.sourceforge.io) is an open-source schematic entry tool with emphasis on integrated circuits. For up-to-date information on the many features of Xschem and the basic operation of it please look at the available [online documentation](https://xschem.sourceforge.io/stefan/xschem_man/xschem_man.html). Usage of Xschem will be learned with the first few basic examples, essentially using a single MOSFET. The usage model of Xschem is that the schematic is hierarchically drawn, and the simulation and evaluation statements are contained in the schematics. Further, Xschem offers embedded graphing, which we will mostly use.
 
 A summary of important Xschem keyboard shortcuts is provided in @sec-xschem-cheatsheet.
 
 ## Circuit Simulation Using ngspice
 
-[ngspice](https://ngspice.sourceforge.io) is an open-source circuit simulator with SPICE dependency [@Nagel_1975]. Besides the usual simulated types like `op` (operating point), `dc` (dc sweeps), `tran` (time domain), `ac` (small-signal frequency sweeps), and `noise` (small-signal noise analysis), ngspice offers a script-like control interface, where many different simulation controls and result evaluations can be done. For detailed information please refer to the latest [online manual](https://ngspice.sourceforge.io/docs/ngspice-43-manual.pdf).
+[ngspice](https://ngspice.sourceforge.io) is an open-source circuit simulator based on SPICE [@Nagel_1975]. Besides the usual simulation types like `op` (operating point), `dc` (dc sweeps), `tran` (time domain), `ac` (small-signal frequency sweeps), and `noise` (small-signal noise analysis), ngspice offers a script-like control interface, where many different simulation controls and result evaluations can be done. For detailed information please refer to the latest [online manual](https://ngspice.sourceforge.io/docs/ngspice-43-manual.pdf).
 
 Important ngspice simulation commands and options (e.g., how to control convergence settings) are listed in @sec-ngspice-cheatsheet.
 
 ## Integrated IC Design Environment (IIC-OSIC-TOOLS)
 
-In order to make use of the various required components (tools like Xschem and ngspice, PDKs like SG13G2) easier, we will use the **IIC-OSIC-TOOLS**. This is a pre-compiled Docker image which allows to do circuit design on a virtual machine on virtually any type of computing equipment (personal PC, Raspberry Pi, cloud server) on various operating systems (Windows, macOS, Linux). For further information like installed tools, how to setup a VM, etc., please look at [IIC-OSIC-TOOLS GitHub page](https://github.com/iic-jku/IIC-OSIC-TOOLS).
+In order to make it easier to use the various required components (tools like Xschem and ngspice, PDKs like SG13G2), we will use the **IIC-OSIC-TOOLS**. This is a pre-compiled Docker image which enables circuit design on a virtual machine on virtually any type of computing equipment (personal PC, Raspberry Pi, cloud server) on various operating systems (Windows, macOS, Linux). For further information like installed tools, how to setup a VM, etc., please look at [IIC-OSIC-TOOLS GitHub page](https://github.com/iic-jku/IIC-OSIC-TOOLS).
 
 ::: {.callout-warning title="Preparation"}
 Please make sure to receive information about your personal VM access ahead of the course start.
