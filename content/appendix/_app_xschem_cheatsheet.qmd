@@ -16,7 +16,7 @@ limitations under the License.
 
 # Appendix: Xschem Cheatsheet {#sec-xschem-cheatsheet}
 
-When opening Xschem, using `Help -> Keys` a pop-up windows comes up with many useful shortcuts. The most useful are:
+When opening Xschem, using `Help -> Keys` a pop-up window comes up with many useful shortcuts. The most useful are:
 
 #### Moving around in a schematic:
 
