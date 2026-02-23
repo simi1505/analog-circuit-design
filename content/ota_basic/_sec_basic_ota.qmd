@@ -92,7 +92,7 @@ $$
 T_\mathrm{slew} \approx \frac{C_\mathrm{load} \cdot V_\mathrm{out,max}}{I_\mathrm{tail}} = \frac{50 \cdot 10^{-15} \cdot 0.9}{10 \cdot 10^{-6}} = 4.5\,\text{ns}.
 $$
 
-This leaves plenty of margin for additional slow-signal settling due to the limited bandwidth, as well as for reducing the supply current.
+This leaves plenty of margin for additional small-signal settling due to the limited bandwidth, as well as for reducing the supply current.
 
 The small-signal settling (assuming one pole at the bandwidth corner frequency) leads to an approximate settling time (1% error corresponds to $\approx 5 \tau$) of
 $$
@@ -156,7 +156,7 @@ $$ {#eq-simple-ota-eq1}
 By combining @eq-simple-ota-eq1 and @eq-simple-ota-eq2 and after a bit of algebraic manipulation we arrive at
 
 $$
-A(s) = \frac{V_\mathrm{out}(s)}{V_\mathrm{in}(s)} = \frac{\gm[1,2]}{2} \frac{2 \cdot \gm[34] + 2 \cdot s \Cgs[3,4]}{(\gm[3,4] + 2 \cdot s \Cgs[3,4]) (\gds[2] + \gds[4] + s C_\mathrm{load})}.
+A(s) = \frac{V_\mathrm{out}(s)}{V_\mathrm{in}(s)} = \frac{\gm[1,2]}{2} \frac{2 \cdot \gm[3,4] + 2 \cdot s \Cgs[3,4]}{(\gm[3,4] + 2 \cdot s \Cgs[3,4]) (\gds[2] + \gds[4] + s C_\mathrm{load})}.
 $$ {#eq-simple-ota-gain}
 
 When we inspect @eq-simple-ota-gain we can see that for low frequencies the (open-loop) gain is
@@ -251,7 +251,7 @@ $$
 $$ {#eq-gmid-saturation}
 
 ::: {.callout-tip title="Exercise: 5T-OTA Sizing"}
-Please size the 5T-OTA according to the previous $\gmid$ and $L$ suggestions. Please calculate the $W$ of $M_{1-6}$ and the total supply current. Please check wether gain error, total output noise, and turn-on settling is met with the calculated devices sizes and bias currents.
+Please size the 5T-OTA according to the previous $\gmid$ and $L$ suggestions. Please calculate the $W$ of $M_{1-6}$ and the total supply current. Please check whether gain error, total output noise, and turn-on settling are met with the calculated devices sizes and bias currents.
 :::
 
 The sizing procedure and its calculation are best performed in a Jupyter notebook, as we can easily look up the exact data from the pre-computed tables:
@@ -270,7 +270,7 @@ Please design the circuit of the 5T-OTA. Put the OTA circuit in a separate schem
 If you get stuck, you can find the testbench and 5T-OTA schematic [here](./xschem/ota-5t_tb-ac.svg) (for the small-signal analysis) and [here](./xschem/ota-5t_tb-tran.svg) (for the large-signal settling simulation). For interested students, the loop gain analysis with Middlebrook's and Tian's method of the 5T-OTA can be found [here](./xschem/ota-5t_tb-loopgain.svg). A comprehensive technical white paper by Texas Instruments about operational amplifier stability theory and compensation methods can be found in [@Kay_2025].
 :::
 
-## Component Mismatch {#sec-mimatch}
+## Component Mismatch {#sec-mismatch}
 
 ### MOSFET Mismatch {#sec-mosfet-mismatch}
 
@@ -345,7 +345,7 @@ With @eq-resistor-mismatch we now have two criteria for how to select the width 
 1. The current handling capability (the larger the $W$, the more dc current a resistor can carry), and
 2. the resistor mismatch (the larger the $W$, the larger the $W L$ for a given $L/W$).
 
-If a resistor's dimensions are not limited by the two criteria above then we usually choose the minimum width that is allowed for a given resistor in a specific technology (for SG13G2 it is $L_\mathrm{min} = 0.5\,\mu\text{m}$) to save area and to minimize the parasitic capacitance of the resistor to substrate. 
+If a resistor's dimensions are not limited by the two criteria above then we usually choose the minimum width that is allowed for a given resistor in a specific technology (for SG13G2 it is $W_\mathrm{min} = 0.5\,\mu\text{m}$) to save area and to minimize the parasitic capacitance of the resistor to substrate. 
 
 ### Capacitor Mismatch {#sec-capacitor-mismatch}
 
