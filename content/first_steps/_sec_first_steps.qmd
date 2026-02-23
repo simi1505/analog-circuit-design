@@ -26,12 +26,12 @@ In this course, we will **not** dive into semiconductor physics and derive the d
 
 Look at the transistor symbols shown in @fig-amplifiers. By treating them as a black box, where the output current is controlled by an input voltage, we can design circuits with all of them, even vacuum tubes would work in the same way.
 
-Since we have an emphasis on integrated circuit design in this course the size of the MOSFET can be adapted by changing its width $W$ and its length $L$. As we will see later, $L$ has a profound impact on the MOSFET performance allowing to trade-off speed versus output conductance versus device-to-device matching. The width $W$ is more of a scaling parameter to adapt the current **density** (strictly speaking charge density) forming in the MOSFET channel to a desired current. More about this later.
+Since we have an emphasis on integrated circuit design in this course, the size of the MOSFET can be adapted by changing its width $W$ and its length $L$. As we will see later, $L$ has a profound impact on the MOSFET performance allowing to trade-off speed versus output conductance versus device-to-device matching. The width $W$ is more of a scaling parameter to adapt the current **density** (strictly speaking charge density) forming in the MOSFET channel to a desired current. More about this later.
 
 The circuit symbol that we will use for the n-channel MOSFET is shown in @fig-nmos-symbol, and for the p-channel MOSFET it is shown in @fig-pmos-symbol. A control voltage between gate ("G") and source ("S") controls the current flow between drain ("D") and source. The MOSFET is a 4-terminal device, so the bulk ("B") can also control the drain-source current flow. Often, the bulk is connected to source, and then the bulk terminal is not shown to declutter the schematics.
 
 ::: {.callout-note title="MOSFET Background"}
-Strictly speaking is the drain-source current of a MOSFET controlled by the voltage between gate and bulk ($\VGB$) and the voltage between drain and source ($\VDS$). Since bulk is often connected to source anyway, and many circuit designers historically were already familiar with the operation of the bipolar junction transistor (BJT), it is common to consider the gate-source voltage (besides the drain-source voltage) as the controlling voltage.
+Strictly speaking, the drain-source current of a MOSFET is controlled by the voltage between gate and bulk ($\VGB$) and the voltage between drain and source ($\VDS$). Since bulk is often connected to source anyway, and many circuit designers historically were already familiar with the operation of the bipolar junction transistor (BJT), it is common to consider the gate-source voltage (besides the drain-source voltage) as the controlling voltage.
 
 This focus on gate-source suggests that the source is special compared to the drain. In a typical physical MOSFET, however, the drain and source are constructed exactly the same (i.e., the MOSFET is a symmetric device), and which terminal is drain, and which terminal is source, is only determined by the applied voltage potentials, and can change dynamically during operation (think of a MOSFET operating as a switch... which side is the drain, which side is the source?).
 
@@ -45,7 +45,7 @@ For hand calculations and theoretical discussions we will use the following simp
 
 {{< include /content/first_steps/_fig_mosfet_large_signal_model.qmd >}}
 
-In an ideal MOSFET no dc current is flowing into the gate, the behavior is purely capacitive. We model this by two capacitors: $\CGG = \CGS + \CGD + \CGB$ is the total capacitance when looking into the gate of the MOSFET. $\CGS$ is usually the dominant capacitance, and $\CGD$ models the capacitive feedback between D and G, usually induced by a topological overlap capacitance in the physical construction of the MOSFET. This capacitance is often small compared to $\CGS$, but in situations where we have a large voltage swing at the drain this capacitance will be affected by the [Miller effect](https://en.wikipedia.org/wiki/Miller_effect) (see @sec-miller-theorem). In hand calculations we will often set $\CGD = \CGB = \CDB = \CSB = 0$.
+In an ideal MOSFET no dc current is flowing into the gate, the behavior is purely capacitive. We model this by two capacitors: $\CGG = \CGS + \CGD + \CGB$ is the total capacitance when looking into the gate of the MOSFET. $\CGS$ is usually the dominant capacitance, and $\CGD$ models the capacitive feedback between D and G, usually induced by a topological overlap capacitance in the physical construction of the MOSFET. This capacitance is often small compared to $\CGS$, but in situations where we have a large voltage swing at the drain, this capacitance will be affected by the [Miller effect](https://en.wikipedia.org/wiki/Miller_effect) (see @sec-miller-theorem). In hand calculations we will often set $\CGD = \CGB = \CDB = \CSB = 0$.
 
 To model a physical MOSFET there will be also a requirement for resistors in the model to account for terminal access resistances ($R_\mathrm{G}$, $R_\mathrm{D}$, and $R_\mathrm{S}$) as well as resistors to model second-order effects like non-quasistatic operation. For lower frequencies and bulk MOSFETs we will not consider these resistors, and just deal with the capacitive behavior.
 
@@ -120,7 +120,7 @@ $$
 \gm = \frac{\partial \ID(\VGS, \VDS, \VSB)}{\partial \VGS},
 $$
 
-and the resistor $\gds$ models the dependency of the drain current by $\VDS$:
+and the output conductance $\gds$ models the dependence of the drain current on $\VDS$:
 
 $$
 \gds = \frac{\partial \ID(\VGS, \VDS, \VSB)}{\partial \VDS}
@@ -139,13 +139,13 @@ As has been mentioned before, in many situations (and whenever we want to use a 
 
 {{< include /content/first_steps/_fig_mosfet_small_signal_model_simplified.qmd >}}
 
-As any electronic device the MOSFET introduces noise into the circuit. In this course we will only consider the **drain-source current noise** of the MOSFET, given by
+Like any electronic device, the MOSFET introduces noise into the circuit. In this course we will only consider the **drain-source current noise** of the MOSFET, given by
 
 $$
 \overline{I_\mathrm{n}^2} = 4 k T \gamma g_\mathrm{d0},
 $$ {#eq-mosfet-noise}
 
-where $\overline{I_\mathrm{n}^2}$ is the one-sided power-spectral density of the noise in A$^2$/Hz; $k$ is the Boltzmann constant; $T$ is the absolute temperature; $\gamma$ is a (fitting) parameter in simplified theory changing between $\gamma = 2/3$ in saturation and $\gamma =1$ for triode operation; $g_\mathrm{d0}$ is equal to $\gm$ in saturation and $\gds$ in triode).
+where $\overline{I_\mathrm{n}^2}$ is the one-sided power-spectral density of the noise in A$^2$/Hz; $k$ is the Boltzmann constant; $T$ is the absolute temperature; $\gamma$ is a (fitting) parameter in simplified theory changing between $\gamma = 2/3$ in saturation and $\gamma =1$ for triode operation; $g_\mathrm{d0}$ is equal to $\gm$ in saturation and $\gds$ in triode.
 
 ::: {.callout-note title="MOSFET Triode and Saturation Region"}
 Sometimes we will refer to different operating modes of the MOSFET like "saturation" or "triode." Generally speaking, when the drain-source voltage is small, then the MOSFET acts as a voltage-controlled resistor (since the impact of both $\VGS$ and $\VDS$ on $\ID$ is large), and this mode of operation we call "**triode**" mode. 
@@ -164,14 +164,14 @@ We can also consider an even more reduced small-signal MOSFET model compared to 
 Can you show, with which circuit manipulations you can transform the pi-model of @fig-mosfet-small-signal-model-basic into the T-model of @fig-mosfet-small-signal-model-basic-t? 
 :::
 
-A metric which is useful to assess the speed of a MOSFET is the so-called **transit frequency** $f_\mathrm{T}$. It is defined as the frequency where the small-signal current gain (output current divided by the input current) of a MOSFET driven by a voltage-source at the input and loaded by a voltage source at the output drops to unity (reaches one). It can easily be derived using the simplified MOSFET small-signal model of @fig-mosfet-small-signal-model-simplified by driving it with a voltage source and shorting the output to (neglecting the feed-forward current introduced by $\Cgd$)
+A metric which is useful to assess the speed of a MOSFET is the so-called **transit frequency** $f_\mathrm{T}$. It is defined as the frequency where the small-signal current gain (output current divided by the input current) of a MOSFET driven by a voltage-source at the input and loaded by a voltage source at the output drops to unity (reaches one). It can easily be derived using the simplified MOSFET small-signal model of @fig-mosfet-small-signal-model-simplified by driving it with a voltage source and shorting the output to ground (neglecting the feed-forward current introduced by $\Cgd$):
 $$
 \omega_\mathrm{T} = 2 \pi f_\mathrm{T} \approx \frac{\gm}{\Cgg} = \frac{\gm}{\Cgs + \Cgd + \Cgb}.
 $$ {#eq-mosfet-transit-frequency}
 This frequency is an extrapolated frequency where the MOSFET operation is dominated by several second-order effects (hence @eq-mosfet-transit-frequency is not valid any longer). A rule-of-thumb is to use a MOSFET up to approximately $f_\mathrm{T} / 10$. In any case, $f_\mathrm{T}$ is a proxy of the speed of a MOSFET; in other words, how much input capacitance $\Cgg$ is incurred when creating a certain $\gm$.
 
 ::: {.callout-tip title="Exercise: MOSFET Transit Frequency"}
-As a home exercise, try to derive @eq-mosfet-transit-frequency starting from @fig-mosfet-small-signal-model-simplified. By showing this transformation you can prove that indeed both circuits are electrically equivalent.
+As a home exercise, try to derive @eq-mosfet-transit-frequency starting from @fig-mosfet-small-signal-model-simplified. This is a useful exercise to verify your understanding of the small-signal model.
 ::: 
 
 Now we need to see how the small-signal parameters seen in @fig-mosfet-small-signal-model can be investigated and estimated using circuit simulation.
