@@ -23,59 +23,59 @@ Here we provide the full calculation of the output impedance/conductance of the 
 
 ## Open-Loop Configuration
 
-For the open-loop case, the gates of $M_1$ and $M_2$ are tied to ground:
+For the open-loop case, the gates of $M_1$ and $M_2$ are tied to ground (and since $M_1$ and $M_2$ are matched $\gm[1] = \gm[2] = \gm[1,2]$), which means that the gate-source voltages of $M_1$ and $M_2$ are identical:
 $$
-V_\mathrm{in,p} = V_\mathrm{in,n} = 0 \to \Vgs[1] = \Vgs[2]
+V_\mathrm{in,p} = V_\mathrm{in,n} = 0 \to \Vgs[1] = \Vgs[2] = \Vgs[1,2]
 $$ {#eq-app-vbufzout-vin-ol}
 
 KCL at the output node:
 
 $$
-I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4]\Vgs[3] - I_{\gds[2]} - \gm[2] \Vgs[2] = 0
+I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4] \Vgs[3] - I_{\gds[2]} - \gm[1,2] \Vgs[1,2] = 0
 $$ {#eq-app-vbufzout-kcl-vout-ol}
 
 KCL at the tail node:
 $$
-\gm[1] \Vgs[1] + \gm[2] \Vgs[2] + I_{\gds[2]} + \gds[5] \Vgs[2] = 0
+2 \gm[1,2] \Vgs[1,2] + I_{\gds[2]} + \gds[5] \Vgs[1,2] = 0
 $$
 
-Using @eq-app-vbufzout-vin-ol we can eliminate $\Vgs[1]$ and solve for $I_{\gds[2]}$.
+We can solve for $I_{\gds[2]}$.
 
 $$
-I_{\gds[2]} = -\left( \gm[1] + \gm[2] + \gds[5] \right) \Vgs[2]
+I_{\gds[2]} = -\left( 2 \gm[1,2] + \gds[5] \right) \Vgs[1,2]
 $$ {#eq-app-vbufzout-igds2}
 
 Furthermore, we need an expression for $\Vgs[3]$. Ohm's law at the transconductance $\gm[34]$ will suffice.
 
 $$
-\Vgs[3] = -\frac{\gm[1]}{\gm[3,4]} \Vgs[1]
+\Vgs[3] = -\frac{\gm[1,2]}{\gm[3,4]} \Vgs[1,2]
 $$ {#eq-app-vbufzout-vgs34-ol}
 
-KVL from the output node down to ground (traversing $\gds[2]$ and $\gds[5]$) in combination with @eq-app-vbufzout-igds2 gives us an expression for $\Vgs[2]$
+KVL from the output node down to ground (traversing $\gds[2]$ and $\gds[5]$) in combination with @eq-app-vbufzout-igds2 gives us an expression for $\Vgs[1,2]$
 
 $$
-\Vgs[2] = -\frac{\gds[2]}{\gm[1] + \gm[2] + \gds[2] + \gds[5]} V_\mathrm{out}
+\Vgs[1,2] = -\frac{\gds[2]}{2 \gm[1,2] + \gds[2] + \gds[5]} V_\mathrm{out}
 $$ {#eq-app-vbufzout-vgs2-ol}
 
 Now, we can plug in all quantities into @eq-app-vbufzout-kcl-vout-ol. First, @eq-app-vbufzout-igds2 is inserted, which provides an expression for the current through the output conductance $\gds[2]$ of $M_2$: 
 
 $$
-I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4] \Vgs[3] + \left( \gm[1] + \gds[5] \right) \Vgs[2] = 0
+I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4] \Vgs[3] + \left( \gm[1,2] + \gds[5] \right) \Vgs[1,2] = 0
 $$
 
-Second, $\Vgs[3]$ is substituted by @eq-app-vbufzout-vgs34-ol. Since we have assumed a matched pair of transistors for the current mirror comprised of $M_3$ and $M_4$, $\gm[3,4]$ perfectly cancels out of the equation, and is effectively replaced by the transconductance $\gm[1]$ of the input transistor $M_1$:
+Second, $\Vgs[3]$ is substituted by @eq-app-vbufzout-vgs34-ol. Since we have assumed a matched pair of transistors for the current mirror comprised of $M_3$ and $M_4$, $\gm[3,4]$ perfectly cancels out of the equation, and is effectively replaced by the transconductance $\gm[1,2]$ of the input transistor $M_1$:
 
 $$
-I_\mathrm{out} - \gds[4] V_\mathrm{out} + \left( 2\gm[1] + \gds[5] \right) \Vgs[2] = 0
+I_\mathrm{out} - \gds[4] V_\mathrm{out} + \left( 2 \gm[1,2] + \gds[5] \right) \Vgs[1,2] = 0
 $$
 
-Third, @eq-app-vbufzout-vgs2-ol gives us an expression for the last remaining unknown $\Vgs[2]$. Thus, the factor in front of $V_\mathrm{out}$ defines the conductance at the output node.
+Third, @eq-app-vbufzout-vgs2-ol gives us an expression for the last remaining unknown $\Vgs[1,2]$. Thus, the factor in front of $V_\mathrm{out}$ defines the conductance at the output node.
 
 $$
-I_\mathrm{out} - \left[ \gds[4] + \left( 2 \cdot \gm[1] + \gds[5] \right) \frac{\gds[2]}{\gm[1] + \gm[2] + \gds[2] + \gds[5]} \right] V_\mathrm{out} = 0
+I_\mathrm{out} - \left[ \gds[4] + \left( 2 \cdot \gm[1,2] + \gds[5] \right) \frac{\gds[2]}{2 \gm[1,2] + \gds[2] + \gds[5]} \right] V_\mathrm{out} = 0
 $$ {#eq-app-vbufzout-zout-ol-1}
 
-Before we interpret this result, we use the assumption of matched input transistors ($\gm[1,2] = \gm[1] = \gm[2]$) and slightly rearrange the equation to give us more insight:
+Before we interpret this result, we slightly rearrange the equation to give us more insight:
 
 $$
 I_\mathrm{out} - \left[ \gds[4] + \frac{\gds[2] \cdot \left( 2\cdot \gm[1,2] + \gds[5] \right)}{\gds[2] + \left( 2 \cdot \gm[1,2] + \gds[5] \right)} \right] V_\mathrm{out} = 0
@@ -94,13 +94,13 @@ $$ {#eq-app-vbufzout-zout-ol-3}
 In contrast to the open-loop case, we keep the gate of $M_1$ connected to ground and tie the input of $M_2$ to the output node $V_\mathrm{out}$:
 
 $$
-V_\mathrm{in,n} = V_\mathrm{out}
+V_\mathrm{in,n} = V_\mathrm{out} \quad \text{and} \quad V_\mathrm{in,p} = 0
 $$ {#eq-app-vbufzout-vin-cl}
 
 KCL at the output node:
 
 $$
-I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4] \Vgs[3] - \gds[2] \Vgs[2] - \gm[2] \Vgs[2] = 0
+I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4] \Vgs[3] - \gds[2] \Vgs[2] - \gm[1,2] \Vgs[2] = 0
 $$ {#eq-app-vbufzout-kcl-vout-cl}
 
 We use KVL from the output node down to ground to find an expression for $\Vgs[2]$.
@@ -112,40 +112,40 @@ $$ {#eq-app-vbufzout-kvl-vout-cl}
 KCL at the tail node:
 
 $$
-\gm[1] \Vgs[1] + \gm[2] \Vgs[2] + \gds[2] \Vgs[2] + \gds[5] \Vgs[2] = 0
+\gm[1,2] \Vgs[1] + \gm[1,2] \Vgs[2] + \gds[2] \Vgs[2] + \gds[5] \Vgs[1] = 0
 $$ {#eq-app-vbufzout-kcl-vtail-cl}
 
 Using @eq-app-vbufzout-kvl-vout-cl to substitute $\Vgs[2]$ in @eq-app-vbufzout-kcl-vtail-cl we find an equation for $\Vgs[1]$:
 
 $$
-\Vgs[1] = -\frac{\gm[2] + \gds[2]}{\gm[1] + \gm[2] + \gds[2] + \gds[5]} V_\mathrm{out}
+\Vgs[1] = -\frac{\gm[1,2] + \gds[2]}{2 \gm[1,2] + \gds[2] + \gds[5]} V_\mathrm{out}
 $$ {#eq-app-vbufzout-vgs1-cl}
 
 Again, we derive the output conductance by plugging @eq-app-vbufzout-kvl-vout-cl, @eq-app-vbufzout-vgs34-ol and @eq-app-vbufzout-vgs1-cl step by step into @eq-app-vbufzout-kcl-vout-cl. First, we use @eq-app-vbufzout-kvl-vout-cl to eliminate $\Vgs[2]$:
 
 $$
-I_\mathrm{out} -\left( \gds[4] + \gds[2] + \gm[2] \right) V_\mathrm{out} - \gm[3,4] \Vgs[3] - \left( \gds[2] + \gm[2] \right) \Vgs[1] = 0
+I_\mathrm{out} -\left( \gds[4] + \gds[2] + \gm[1,2] \right) V_\mathrm{out} - \gm[3,4] \Vgs[3] - \left( \gds[2] + \gm[1,2] \right) \Vgs[1] = 0
 $$
 
 Second, @eq-app-vbufzout-vgs34-ol also holds for the closed-loop case and lets us eliminate $\Vgs[3]$:
 
 $$
-I_\mathrm{out} -\left( \gds[4] + \gds[2] + \gm[2] \right) V_\mathrm{out} - \left( \gds[2] + \gm[2] - \gm[1] \right) \Vgs[1] = 0
+I_\mathrm{out} -\left( \gds[4] + \gds[2] + \gm[1,2] \right) V_\mathrm{out} - \gds[2] \Vgs[1] = 0
 $$
 
 Third, we use @eq-app-vbufzout-vgs1-cl to eliminate the remaining unknown $\Vgs[1]$:
 
 $$
 \begin{split}
-& I_\mathrm{out} - \left( \gds[4] + \gds[2] + \gm[2] \right) V_\mathrm{out} \\
-&+ \left( \gds[2] + \gm[2] - \gm[1] \right) \frac{\gm[2] + \gds[2]}{\gm[1] + \gm[2] + \gds[2] + \gds[5]} V_\mathrm{out} = 0
+& I_\mathrm{out} - \left( \gds[4] + \gds[2] + \gm[1,2] \right) V_\mathrm{out} \\
+&+ \gds[2] \frac{\gm[1,2] + \gds[2]}{2 \gm[1,2] + \gds[2] + \gds[5]} V_\mathrm{out} = 0
 \end{split}
 $$
 
-A simpler result can be obtained, if we neglect $\gds[2]$ and $\gds[5]$ in @eq-app-vbufzout-vgs1-cl first ($\gm \gg \gds$) and then plug it into our main equation. Additionally, we use $\gm[1,2] = \gm[1] =\gm[2]$ to further simplify the equation:
+A simpler result can be obtained if we neglect $\gds[2]$ and $\gds[5]$ in @eq-app-vbufzout-vgs1-cl ($\gm \gg \gds$):
 
 $$
-I_\mathrm{out} -\left( \gds[4] + \frac{3}{2} \gds[2] + \gm[1,2] \right) V_\mathrm{out} \approx 0
+I_\mathrm{out} -\left( \gds[4] + \frac{1}{2} \gds[2] + \gm[1,2] \right) V_\mathrm{out} \approx 0
 $$
 
 If we apply $\gm \gg \gds$ again we arrive at: 
