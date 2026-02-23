@@ -16,7 +16,7 @@ limitations under the License.
 
 # Appendix: ngspice Cheatsheet {#sec-ngspice-cheatsheet}
 
-Here is an unsorted list of useful ngspice settings and command:
+Here is an unsorted list of useful ngspice settings and commands:
 
 ## Commands
 
