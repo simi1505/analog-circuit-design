@@ -487,12 +487,12 @@ $$\overline{v_\mathrm{n,in}^2} = \frac{\overline{i_\mathrm{n}^2}}{\gm^2} = \frac
 **Solution:**
 
 The integrated output noise ($kT/C$ noise):
-$$V_\mathrm{n,out,rms}^2 = \frac{kT}{C_\mathrm{L}} \left[ 2\gamma_{1,2} + 2\gamma_{3,4} \left(\frac{\gm[3,4]}{\gm[1,2]}\right)^2 \right]$$
+$$V_\mathrm{n,out,rms}^2 = \frac{kT}{C_\mathrm{L}} \left( 2\gamma_{1,2} + 2\gamma_{3,4} \frac{\gm[3,4]}{\gm[1,2]} \right)$$
 
 **Analysis:**
 
 1. Input pair ($M_1$, $M_2$): Each contributes $\gamma_{1,2}$, total factor $2 \gamma_{1,2}$
-2. Load pair ($M_3$, $M_4$): Each contributes $\gamma_{3,4} \cdot (\gm[3,4]/\gm[1,2])^2$ when referred to the input
+2. Load pair ($M_3$, $M_4$): Each contributes $\gamma_{3,4} \cdot \gm[3,4]/\gm[1,2]$ when referred to the input
 
 **To minimize noise:**
 
