@@ -18,7 +18,7 @@ limitations under the License.
 
 When designing integrated circuits it is an important question how to select various parameters of a MOSFET, like $W$, $L$, or the bias current $I_\mathrm{D}$. In comparison to using discrete components in PCB design, or also compared to a bipolar junction transistor (BJT), we have these degrees of freedom, which make integrated circuit design so interesting.
 
-Often, transistor sizing in entry-level courses is based on the square-law model, where a simple analytical equation for the drain current can be derived. However, in nanometer CMOS, the MOSFET behavior is much more complex than these simple models. Also, these highly simplified derivations introduce concepts like the threshold voltage or the overdrive voltage, which are interesting from a theoretical viewpoint, but bear little practical use.
+Often, transistor sizing in entry-level courses is based on the square-law model, where a simple analytical equation for the drain current can be derived. However, in nanometer CMOS, the MOSFET behavior is much more complex than these simple models. Also, these highly simplified derivations introduce concepts like the threshold voltage or the overdrive voltage, which are interesting from a theoretical viewpoint, but have little practical use.
 
 ::: {.callout-note title="MOSFET Square-Law Model"}
 One of the many simplifications of the square-law model is that the mobility of the charge carriers is assumed constant (it is not). Further, the existence of a threshold voltage is assumed, but in fact this voltage exists only given a certain definition, and depending on definition, its value changes. In addition, in nm CMOS, the threshold voltage is a function of many things, like $W$ and $L$.
@@ -56,9 +56,9 @@ The resulting four-dimensional data is saved into a `.txt` file and imported int
 
 First, we will start looking at the LV NMOS. In @sec-techsweep-pmos we have the corresponding graphs for the LV PMOS. In this lecture, we will only use the LV MOSFETs. While there are also the HV types available, they are mainly used for high-voltage circuits, like circuits connecting to the outside world. Here, we only will design low-voltage circuits running at a nominal supply voltage of $1.5\,\text{V}$, so only the LV types are of interest to us.
 
-In the plots that follow we will set $\VDS = \VDD/2$ to keep the MOSFET in saturation (as this is the region of operation where most MOSFET are operated when working in class-A). We will later also look at the MOSFET performance in triode operation, as this is the operation mode where the MOSFET is used as a switch. While the $\gmid$ method is primarily intended to be used for circuits where the MOSFETs are held in saturation and are biased by a certain bias current (usually referred to [class-A](https://en.wikipedia.org/wiki/Power_amplifier_classes#Class_A)), the generated tables using the testbenches of @sec-techsweep-testbench contain the data for all MOSFET bias points.
+In the plots that follow we will set $\VDS = \VDD/2$ to keep the MOSFET in saturation (as this is the region of operation where most MOSFETs are operated when working in class-A). We will later also look at the MOSFET performance in triode operation, as this is the operation mode where the MOSFET is used as a switch. While the $\gmid$ method is primarily intended to be used for circuits where the MOSFETs are held in saturation and are biased by a certain bias current (usually referred to [class-A](https://en.wikipedia.org/wiki/Power_amplifier_classes#Class_A)), the generated tables using the testbenches of @sec-techsweep-testbench contain the data for all MOSFET bias points.
 
-The first import graph is the plot of $\gmid$ and $f_\mathrm{T}$ versus the gate-source voltage $\VGS$. First let us answer the question why $\gmid$ is a good parameter to look at, and actually this is also the central parameter in the $\gmid$ methodology. In many circuits we want to get a large amplification from a MOSFET, which corresponds to a large $\gm$. We want to achieve this by spending the minimum biasing current possible (ideally zero), as we almost always design for lowest power consumption. Thus, a high $\gmid$ ratio is good.
+The first important graph is the plot of $\gmid$ and $f_\mathrm{T}$ versus the gate-source voltage $\VGS$. First let us answer the question why $\gmid$ is a good parameter to look at, and actually this is also the central parameter in the $\gmid$ methodology. In many circuits we want to get a large amplification from a MOSFET, which corresponds to a large $\gm$. We want to achieve this by spending the minimum biasing current possible (ideally zero), as we almost always design for lowest power consumption. Thus, a high $\gmid$ ratio is good.
 
 ::: {.callout-note title="Power Consumption"}
 Designing for minimum power consumption is pretty much always mandated. For battery-operated equipment it is a paramount requirement, but also in other equipment electrical energy consumption is a concern, and often severely limited by the cooling capabilities of the electrical system.
@@ -82,14 +82,14 @@ with $\Vth$ the threshold voltage and $V_\mathrm{od}$ the so-called "overdrive v
 Why are we so often using a temperature of $300\,\text{K}$ for a typical condition? As this corresponds to roughly $27^{\circ}\text{C}$, this accounts for some self heating compared to otherwise cooler usual room temperatures. Further, engineers like round numbers which are easy to remember, so $300\,\text{K}$ is used as a proxy for room temperature.
 :::
 
-As we can also see from the plot below, the peak transit frequency of the LV NMOS is about $75\,\text{GHz}$, which allows building radio-frequency circuits up to ca. $f_\mathrm{T} / 10 = 7.5\,\text{GHz}$, which is a respectable number. It is no coincidence, that the transition for RF design in the GHz-range switched from BJT-based technologies to CMOS roughly in the time frame when 130nm CMOS became available (ca. 2000). 
+As we can also see from the plot below, the peak transit frequency of the LV NMOS is about $75\,\text{GHz}$, which allows building radio-frequency circuits up to ca. $f_\mathrm{T} / 10 = 7.5\,\text{GHz}$, which is a respectable number. It is no coincidence that the transition for RF design in the GHz-range switched from BJT-based technologies to CMOS roughly in the time frame when 130nm CMOS became available (ca. 2000). 
 
 Note that $f_\mathrm{T}$ saturates and even decreases again at around $\VGS = 1.2\,\text{V}$ due to second-order effects of the transistor like [velocity saturation](https://en.wikipedia.org/wiki/Saturation_velocity) and [DIBL](https://en.wikipedia.org/wiki/Drain-induced_barrier_lowering). Velocity saturation describes the saturation of the velocity of the electrons at a certain $\VGS$. As a consequence, also $\gm$ saturates. Since $f_\mathrm{T} \propto \gm / \Cgs$, $f_\mathrm{T}$ can not further increase. DIBL explains the effect when a too high $\VGS$ is applied and therefore the channel is confined to a narrow region at the surface, leading to
 more carrier scattering and thus lower mobility.
 
 {{< embed ./gmid/techsweep_sg13_plots_nmos.ipynb#fig-nmos-gmid-ft-vs-vgs >}}
 
-The following figure plots $f_\mathrm{T}$ against $\gmid$ for several different $L$. As you can see, device speed maximizes for a low $\gmid$ and a short $L$. Note, that the drain-source voltage is kept at $\VDS = 0.75\,\text{V} = \VDD / 2$, which is a typical value keeping the MOSFET in saturation across the characterization sweeps. Further, the source-bulk voltage is kept at $\VSB = V_\mathrm{S} - V_\mathrm{B} = 0\,\text{V}$, which means bulk and source terminals are connected. If $\VSB \neq 0\,\text{V}$, then the so-called [body effect](https://en.wikipedia.org/wiki/Threshold_voltage#Body_effect), bulk effect or back-gate effect occurs. 
+The following figure plots $f_\mathrm{T}$ against $\gmid$ for several different $L$. As you can see, device speed maximizes for a low $\gmid$ and a short $L$. Note that the drain-source voltage is kept at $\VDS = 0.75\,\text{V} = \VDD / 2$, which is a typical value keeping the MOSFET in saturation across the characterization sweeps. Further, the source-bulk voltage is kept at $\VSB = V_\mathrm{S} - V_\mathrm{B} = 0\,\text{V}$, which means bulk and source terminals are connected. If $\VSB \neq 0\,\text{V}$, then the so-called [body effect](https://en.wikipedia.org/wiki/Threshold_voltage#Body_effect), bulk effect or back-gate effect occurs. 
 
 If $\VSB > 0\,\text{V}$, then $\Vth$ increases. If $\VSB < 0\,\text{V}$, then $\Vth$ decreases. At first glance, this effect may sound unwanted (and often also is), however, improved circuit designs by changing the bulk potential can be realized. For example, circuit 16 in [@Pretl_Fifty_Nifty_Circuits] shows an implementation of a current mirror by exploiting the body effect. However, keep in mind that a deep-n-well (DNW), also called triple-well, is needed for NMOS transistors when the bulk is not tied to GND. This DNW may not be supported by the used PDK or can add additional costs to the wafer processing.
 
@@ -103,14 +103,14 @@ The following figure plots the drain current density $I_\mathrm{D}/W$ as a funct
 
 {{< embed ./gmid/techsweep_sg13_plots_nmos.ipynb#fig-nmos-jd-vs-gmid-vs-l >}}
 
-The following plot shows the minimum drain-source voltage $V_\mathrm{ds,sat}$ that we need to establish in order to keep the MOSFET in saturation. As you can see, this value is almost independent of $L$, and increases for small $\gmid$. So for low-voltage circuits, where headroom is precious, we tend to bias at $\gmid \ge 10$, wheres for fast circuits we need to go to small $\gmid \le 5$ requiring substantial voltage headroom per MOSFET stage that we stack on top of each other.
+The following plot shows the minimum drain-source voltage $V_\mathrm{ds,sat}$ that we need to establish in order to keep the MOSFET in saturation. As you can see, this value is almost independent of $L$, and increases for small $\gmid$. So for low-voltage circuits, where headroom is precious, we tend to bias at $\gmid \ge 10$, whereas for fast circuits we need to go to small $\gmid \le 5$ requiring substantial voltage headroom per MOSFET stage that we stack on top of each other.
 
 {{< embed ./gmid/techsweep_sg13_plots_nmos.ipynb#fig-nmos-vdsat-vs-gmid-vs-l >}}
 
 For analog circuits the noise performance is usually quite important. Thermal noise of a resistor (the Johnson-Nyquist noise) has a flat power-spectral density (PSD) given by $\overline{V_\mathrm{n}^2}/\Delta f = 4 k T R$, where $k$ is Boltzmann's constant, $T$ absolute temperature, and $R$ the value of the resistor (the unit of $\overline{V_\mathrm{n}^2}/\Delta f$ is $\text{V}^2/\text{Hz}$). This PSD is essentially flat until very high frequencies where [quantum effects](https://en.wikipedia.org/wiki/Johnson–Nyquist_noise) start to kick in.
 
 ::: {.callout-note title="Noise Notation"}
-We usually leave the $\Delta f$ away for a shorter notation, so we write $\overline{V_\mathrm{n}^2}$ when we actually mean $\overline{V_\mathrm{n}^2}/\Delta f$. In case of doubt look at the unit of a quantity, whether is shows $\text{V}^2$ or $\text{V}^2/\text{Hz}$ or $\text{V}/\sqrt{\text{Hz}}$ (or $\text{I}^2$ or $\text{I}^2/\text{Hz}$ or $\text{I}/\sqrt{\text{Hz}}$).
+We usually leave the $\Delta f$ away for a shorter notation, so we write $\overline{V_\mathrm{n}^2}$ when we actually mean $\overline{V_\mathrm{n}^2}/\Delta f$. In case of doubt look at the unit of a quantity, whether it shows $\text{V}^2$ or $\text{V}^2/\text{Hz}$ or $\text{V}/\sqrt{\text{Hz}}$ (or $\text{A}^2$ or $\text{A}^2/\text{Hz}$ or $\text{A}/\sqrt{\text{Hz}}$).
 
 Please also note that the pair of $k T$ pretty much always shows up together, so when you do a calculation and you miss the one or the other, that is often a sign for miscalculation. Boltzmann's constant $k = 1.38 \cdot 10^{-23}\,\text{J/K}$ is just a scaling factor from thermal energy expressed as a temperature $T$ to energy $E = k T$ expressed in Joule.
 
@@ -133,7 +133,7 @@ As you can see in the following plot, $f_\mathrm{co}$ can reach well into the 10
 
 {{< embed ./gmid/techsweep_sg13_plots_nmos.ipynb#fig-nmos-fco-vs-gmid-vs-l >}}
 
-During the design phase, it might be convenient to have an overview of the most relevant sizing plots of the NMOST on one page. This overview can be downloaded [here](./gmid/overview/techsweep_sg13_overview.pdf).
+During the design phase, it might be convenient to have an overview of the most relevant sizing plots of the NMOS on one page. This overview can be downloaded [here](./gmid/overview/techsweep_sg13_overview.pdf).
 
 ## PMOS Characterization in Saturation {#sec-techsweep-pmos}
 
@@ -154,7 +154,7 @@ $f_\mathrm{T}$ against $\gmid$ for several different $L$. One can see a signific
 $\gm / \gds$ versus $\gmid$. Unfortunately, one can see a modelling error for the PMOS in this plot. The self gain $\gm / \gds$ reaches non-physical values, which indicates an issue with the $\gds$ modelling for the PMOS. We can not use these values for our circuit sizing, so we will use the respective NMOS plots also for the PMOS.
 
 ::: {.callout-important title="Beware of Modelling Issues"}
-This example shows how important it is to benchmark the device models when starting to use a new technology. Modelling artifacts like the one shown are quite often happening, as setting up the device compact models and parametrize them according to measurement data is a very complex task. In any case, just be aware that modelling issues could exist in whatever PDK you are going to use!
+This example shows how important it is to benchmark the device models when starting to use a new technology. Modelling artifacts like the one shown are quite common, as setting up the device compact models and parametrize them according to measurement data is a very complex task. In any case, just be aware that modelling issues could exist in whatever PDK you are going to use!
 :::
 
 {{< embed ./gmid/techsweep_sg13_plots_pmos.ipynb#fig-pmos-gmgds-vs-gmid-vs-l >}}
@@ -175,7 +175,7 @@ Flicker noise corner frequency $f_\mathrm{co}$ versus $\gmid$ and $L$. If you co
 
 {{< embed ./gmid/techsweep_sg13_plots_pmos.ipynb#fig-pmos-fco-vs-gmid-vs-l >}}
 
-During the design phase, it might be convenient to have an overview of the most relevant sizing plots of the PMOST on one page. This overview can be downloaded [here](./gmid/overview/techsweep_sg13_overview.pdf).
+During the design phase, it might be convenient to have an overview of the most relevant sizing plots of the PMOS on one page. This overview can be downloaded [here](./gmid/overview/techsweep_sg13_overview.pdf).
 
 ## Tradeoffs in Saturation {#sec-tradeoffs-saturation}
 
