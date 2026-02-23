@@ -16,7 +16,7 @@ limitations under the License.
 
 # Differential Pair {#sec-diff-pair}
 
-Like the current mirror in @sec-current-mirror the **differential pair** is a ubiquitous building block often used in integrated circuit design [@Blumlein_1937]. The fundamental structure is given in @fig-differential-pair.
+Like the current mirror in @sec-current-mirror, the **differential pair** is a ubiquitous building block often used in integrated circuit design [@Blumlein_1937]. The fundamental structure is given in @fig-differential-pair.
 
 {{< include /content/diffpair/_fig_differential_pair.qmd >}}
 
@@ -29,7 +29,7 @@ and see what the impact on the output currents is.
 
 ## Differential Operation of the Diffpair
 
-For a differential mode of operation we assume that the input common mode voltage is constant, i.e., $(V_\mathrm{in,p} + V_\mathrm{in,n})/2 = V_\mathrm{CM}$. The differential input voltage $v_\mathrm{in} = V_\mathrm{in,p} - V_\mathrm{in,n}$, so that
+For a differential mode of operation we assume that the input common-mode voltage is constant, i.e., $(V_\mathrm{in,p} + V_\mathrm{in,n})/2 = V_\mathrm{CM}$. The differential input voltage $v_\mathrm{in} = V_\mathrm{in,p} - V_\mathrm{in,n}$, so that
 $$
 V_\mathrm{in,p} = V_\mathrm{CM} + \frac{v_\mathrm{in}}{2}
 $$
