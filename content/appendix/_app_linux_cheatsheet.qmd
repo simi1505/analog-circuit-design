@@ -20,7 +20,7 @@ The most useful commands for the Linux command line are:
 
 - `ls` to list files and directories
 - `cd` to change directory (e.g. `cd analog-circuit-design/xschem`)
-- `cd ..` to move one directory level down
+- `cd ..` to move one directory level up
 - `mkdir` to create a new directory (e.g. `mkdir my_directory`)
 - `touch` to create an empty file (e.g. `touch file.txt`)
 - `rm` to remove files (e.g. `rm file.txt`)
