@@ -16,9 +16,9 @@ limitations under the License.
 
 # Cascode Stage {#sec-cascode-stage}
 
-As we have seen in @sec-basic-ota the performance of the OTA is generally quite acceptable (see @tbl-voltage-buffer-spec), but we might want to aim for better output voltage accuracy. As our analysis has shown the output voltage tolerance is limited by the open-loop dc gain $A_0$ of the OTA (see @eq-voltage-buffer-tolerance), which in turn is limited by the output conductance of $M_2$ and $M_4$ in @fig-basic-ota, which is also confirmed by the analytical result in @eq-simple-ota-gain-dc.
+As we have seen in @sec-basic-ota, the performance of the OTA is generally quite acceptable (see @tbl-voltage-buffer-spec), but we might want to aim for better output voltage accuracy. As our analysis has shown the output voltage tolerance is limited by the open-loop dc gain $A_0$ of the OTA (see @eq-voltage-buffer-tolerance), which in turn is limited by the output conductance of $M_2$ and $M_4$ in @fig-basic-ota, which is also confirmed by the analytical result in @eq-simple-ota-gain-dc.
 
-During the sizing procedure we have seen that the achievable $\gm / \gds$ ratio of a single MOSFET is limited, even if we increase $L$. We are thus searching for a better option, and here (local) feedback in form of a **cascode** comes to help.
+During the sizing procedure, we have seen that the achievable $\gm / \gds$ ratio of a single MOSFET is limited, even if we increase $L$. We are thus searching for a better option, and here (local) feedback in form of a **cascode** comes to help.
 
 For analysis of a cascode, we use the following single-transistor stage shown in @fig-cascode-transistor.
 
@@ -28,7 +28,7 @@ In order to derive the operation of the cascode analytically, we draw the small-
 
 {{< include /content/cascode/_fig_cascode_small_signal.qmd >}}
 
-Since the gate is assumed at a fixed potential, we can put $\Cgs$ in parallel to $G_\mathrm{S}$ as $G_\mathrm{S}^{*} = G_\mathrm{S} + s \Cgs$, and we can put $\Cgd$ in parallel to $G_\mathrm{D}$ as $G_\mathrm{D}^{*} = G_\mathrm{D} + s \Cgd$. As a result we will disregard these capacitors for now, and just consider $G_\mathrm{S}$ and $G_\mathrm{D}$. 
+Since the gate is assumed at a fixed potential, we can put $\Cgs$ in parallel with $G_\mathrm{S}$ as $G_\mathrm{S}^{*} = G_\mathrm{S} + s \Cgs$, and we can put $\Cgd$ in parallel with $G_\mathrm{D}$ as $G_\mathrm{D}^{*} = G_\mathrm{D} + s \Cgd$. As a result, we will disregard these capacitors for now, and just consider $G_\mathrm{S}$ and $G_\mathrm{D}$. 
 
 {{< include /content/cascode/_fig_cascode_small_signal_simplified.qmd >}}
 
@@ -57,7 +57,7 @@ We find that if $G_\mathrm{S} = 0$ ($R_\mathrm{S} \to \infty$) then $g_\mathrm{o
 
 We can further calculate the benefits of a cascode if we assume we put a cascode on top of a common-source transistor stage (thus $G_\mathrm{S} = \gds'$) and get
 $$
-g_\mathrm{out} = \frac{\gds \cdot \gds'}{\gds' + \gm + \gds} \approx \gds' \frac{\gds}{\gm}!
+g_\mathrm{out} = \frac{\gds \cdot \gds'}{\gds' + \gm + \gds} \approx \gds' \frac{\gds}{\gm}
 $$ {#eq-cs-cascode-output-impedance}
 
 ::: {.callout-important title="Benefit of Cascode (Output)"}
