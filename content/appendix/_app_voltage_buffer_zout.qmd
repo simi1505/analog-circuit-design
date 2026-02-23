@@ -57,7 +57,7 @@ $$
 \Vgs[2] = -\frac{\gds[2]}{\gm[1] + \gm[2] + \gds[2] + \gds[5]} V_\mathrm{out}
 $$ {#eq-app-vbufzout-vgs2-ol}
 
-Now, we can plug in all quantities into @eq-app-vbufzout-kcl-vout-ol. First, @eq-app-vbufzout-igds2 is inserted, which provide an expression for the current through the output conductance $\gds[2]$ of $M_2$: 
+Now, we can plug in all quantities into @eq-app-vbufzout-kcl-vout-ol. First, @eq-app-vbufzout-igds2 is inserted, which provides an expression for the current through the output conductance $\gds[2]$ of $M_2$: 
 
 $$
 I_\mathrm{out} - \gds[4] V_\mathrm{out} - \gm[3,4] \Vgs[3] + \left( \gm[1] + \gds[5] \right) \Vgs[2] = 0
