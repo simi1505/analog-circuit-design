@@ -42,7 +42,7 @@ limitations under the License.
 \newcommand{\CGD}[1][]{C_\mathrm{GD#1}}
 \newcommand{\Cgd}[1][]{C_\mathrm{gd#1}}
 \newcommand{\CDG}[1][]{C_\mathrm{DG#1}}
-\newcommand{\Cdg}[1][]{C_\mathrm{gd#1}}
+\newcommand{\Cdg}[1][]{C_\mathrm{dg#1}}
 \newcommand{\CDB}[1][]{C_\mathrm{DB#1}}
 \newcommand{\Cdb}[1][]{C_\mathrm{db#1}}
 \newcommand{\CSB}[1][]{C_\mathrm{SB#1}}
