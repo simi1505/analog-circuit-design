@@ -100,7 +100,7 @@ These recommendations are specifically targeted at Verilog; however, they apply 
 - Take care to reset all registers to a defined state (in simulation and HW).
 - Use the rule of "one file per module." The filename shall match the module declaration.
 - Use `` `default_nettype none`` at the beginning of a file containing a module definition. After the module you can use `` `default_nettype wire``. This will add a safety net against typos in signal names.
-- In a logic assign block, use `assign @(*) begin ... end` instead of spelling out the signals in the sensitivity list. Forgetting a signal could lead to serious mismatches between simulation and HW.
+- In a combinational always block, use `always @(*) begin ... end` instead of spelling out the signals in the sensitivity list. Forgetting a signal could lead to serious mismatches between simulation and HW.
 - Make your code flexible by making bit widths and other values parameterized using a `localparam` or module parameter.
 - Be cautious of implicit type conversions and bit-width adaptions; better make explicit conversions and match bit widths in assignments.
 - Use only blocking assignments (`=`) in `always @(*)` blocks, and only non-blocking assignments (`<=`) in clocked `always @(posedge ...)` blocks.
@@ -111,5 +111,5 @@ A comprehensive coding style guide for Verilog/SystemVerilog can be found [here]
 ## Further Reading
 
 - Good information about drawing schematics, design testbenches, etc: <https://circuit-artists.com>
-- Sutherland/Mills, *Verilog and SystemVerilog Gotchas - 101 Common Coding Erorrs and How to Avoid Them*, Springer, 2010
+- Sutherland/Mills, *Verilog and SystemVerilog Gotchas - 101 Common Coding Errors and How to Avoid Them*, Springer, 2010
 - B. Razavi, *The Analog Mind*, recurrent column in IEEE Solid-State Circuits Magazine
