@@ -236,10 +236,10 @@ $$G_\mathrm{m,dm} = \gm$$
 **Common mode:** With $v_\mathrm{in,cm}$ applied to both inputs:
 
 - The tail current source presents impedance $r_\mathrm{tail} = 1 / \gds[,tail]$
-- Due to source degeneration: $G_\mathrm{m,cm} = \frac{\gm}{1 + \gm \cdot r_\mathrm{tail}} \approx \frac{1}{r_\mathrm{tail}}$
+- Due to source degeneration: $G_\mathrm{m,cm} = \frac{\gm}{1 + 2 \cdot \gm \cdot r_\mathrm{tail}} \approx \frac{1}{2 \cdot r_\mathrm{tail}}$
 
 **Common-mode rejection ratio (CMRR):**
-$$\text{CMRR} = \frac{G_\mathrm{m,dm}}{G_\mathrm{m,cm}} = \gm \cdot r_\mathrm{tail}$$
+$$\text{CMRR} = \frac{G_\mathrm{m,dm}}{G_\mathrm{m,cm}} = 2 \cdot \gm \cdot r_\mathrm{tail}$$
 :::
 
 ::: {.callout-note title="Question 5.2 --- Input-Referred Offset" collapse="true"}

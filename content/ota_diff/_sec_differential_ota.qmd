@@ -158,7 +158,7 @@ $$
 We can realize the advantage of using the resistor/MOSFET load in the input as well as the output stage when we calculate the common-mode gain of the OTA. We realize that we can use half-circuits due to the inherent symmetry of the circuit in @fig-diff-ota-resload. The gain of the first stage (the MOSFET-diode loaded differential pair $M_{1,2}$) is given by (using @eq-differential-pair-cm)
 
 $$
-A_\mathrm{cm,1} \approx -\frac{1}{\gm[3,5]} \frac{\gm[1,2] \gds[10]}{\gm[1,2] + \gds[10]} \approx -\frac{\gds[10]}{\gm[3,5]}.
+A_\mathrm{cm,1} \approx -\frac{1}{\gm[3,5]} \cdot \frac{\gm[1,2] \gds[10]}{2\gm[1,2] + \gds[10]} \approx -\frac{\gds[10]}{2\gm[3,5]}.
 $$ {#eq-diff-ota-cmgain1}
 
 The common-mode gain of the second stage is similarly given by
@@ -167,10 +167,10 @@ $$
 A_\mathrm{cm,2} \approx -\frac{\gm[4,6]}{\gm[7,8]}.
 $$ {#eq-diff-ota-cmgain2}
 
-Combining @eq-diff-ota-cmgain1 and @eq-diff-ota-cmgain2 we arrive at (assuming that $\gm[3,5] = \gm[4,6]$)
+Combining @eq-diff-ota-cmgain1 and @eq-diff-ota-cmgain2 we arrive at (assuming that $\gm[3,5] \approx \gm[4,6]$)
 
 $$
-A_\mathrm{cm} = A_\mathrm{cm,1} A_\mathrm{cm,2} = \frac{\gds[10]}{\gm[7,8]}
+A_\mathrm{cm} = A_\mathrm{cm,1} \cdot A_\mathrm{cm,2} \approx \frac{\gds[10]}{2\gm[7,8]}
 $$ {#eq-diff-ota-cmgain}
 
 which is a low common-mode gain with very likely $A_\mathrm{cm} < 1$, which is very good news for the common-mode stability!

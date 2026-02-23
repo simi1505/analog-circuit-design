@@ -58,34 +58,36 @@ We see in @eq-differential-pair-dm that the differential output current is simpl
 
 Usually, the source conductance $g_\mathrm{tail}$ is realized by a current source and ideally should be $g_\mathrm{tail} = 0$. If this is the case, then the output currents are not a function of the common-mode input voltage ($I_\mathrm{tail}$ is set by the tail current source), and
 $$
-I_\mathrm{out,p} = I_\mathrm{out,n} = \frac{I_\mathrm{tail}}{2}.
+I_\mathrm{out,p} = I_\mathrm{out,n} = I_\mathrm{out} = \frac{I_\mathrm{tail}}{2}.
 $$
 
-However, if we assume a realistic tail current source then $g_\mathrm{tail} > 0$. For analysis we can simply look at a half circuit since the circuit operation is symmetric. In order to simplify the analysis a bit we remove all capacitors from the MOSFET small-signal model and set $\gds = \gmb = 0$. We then arrive at the small-signal equivalent circuit shown in @fig-differential-pair-cm (note that we set $V_\mathrm{in,p} = V_\mathrm{in,n} = V_\mathrm{in}$ and $I_\mathrm{out,p} = I_\mathrm{out,n} = I_\mathrm{out}$ under symmetry considerations).
+However, if we assume a realistic tail current source then $g_\mathrm{tail} > 0$. For analysis we can simply look at a half circuit since the circuit operation is symmetric. In order to simplify the analysis a bit we remove all capacitors from the MOSFET small-signal model and set $\gds = \gmb = 0$. We then arrive at the small-signal equivalent circuit shown in @fig-differential-pair-cm (note that we set $V_\mathrm{in,p} = V_\mathrm{in,n} = V_\mathrm{in}$ and $I_\mathrm{out,p} = I_\mathrm{out,n} = I_\mathrm{out}$ under symmetry considerations). As both transistors inject their drain current into the shared tail node, the half circuit sees an effective tail conductance of $g_\mathrm{tail}/2$.
 
 {{< include /content/diffpair/_fig_differential_pair_cm.qmd >}}
 
 Formulating KVL for the input-side loop we get
 $$
-V_\mathrm{in} = \Vgs + \frac{\Id}{g_\mathrm{tail}}.
+V_\mathrm{in} = \Vgs + \frac{2 \Id}{g_\mathrm{tail}}.
 $$
 
 With $I_\mathrm{out} = \Id = \gm \Vgs$ we arrive at
 $$
-I_\mathrm{out} = \frac{\gm g_\mathrm{tail}}{\gm + g_\mathrm{tail}} V_\mathrm{in}
+I_\mathrm{out} = \frac{\gm \cdot g_\mathrm{tail}}{2 \gm + g_\mathrm{tail}} V_\mathrm{in}
 $$ {#eq-differential-pair-cm}
 
 Interpreting @eq-differential-pair-cm we can distinguish the following extreme cases:
 
 1. If $g_\mathrm{tail} = 0$ (ideal tail current source) then $I_\mathrm{out} = 0$, the common-mode voltage variation from the input is suppressed and does not show up at the common-mode output current (which is constant due to the ideal tail current source). This is usually the case that we want to achieve.
 2. If $g_\mathrm{tail} \rightarrow \infty$ then $I_\mathrm{out} = \gm V_\mathrm{in}$, which means the output current is a function of the MOSFET $\gm$. If everything is perfectly matched, then the differential output current is zero, but the common-mode output current changes according to the common-mode input voltage. In special cases this can be a wanted behavior, this configuration is called a "pseudo-differential pair."
-3. For the typical case that $\gm \gg g_\mathrm{tail}$ then $I_\mathrm{out} \approx g_\mathrm{tail} V_\mathrm{in}$.
+3. For the typical case that $\gm \gg g_\mathrm{tail}$ then $I_\mathrm{out} \approx (g_\mathrm{tail}/2) V_\mathrm{in}$.
 
-Note that the result of @eq-differential-pair-cm is also valid for the general case of a degenerated common-source transistor stage (see @fig-common-source-degenerated). The effective transconductange $\gm'$ is given by ($R_\mathrm{degen} = g_\mathrm{tail}^{-1}$)
+Note that @eq-differential-pair-cm is closely related to the general case of a degenerated common-source transistor stage (see @fig-common-source-degenerated). The effective transconductance $\gm'$ of a degenerated CS stage is given by
 
 $$
-\gm' = \frac{I_\mathrm{out}}{V_\mathrm{in}} = \frac{\gm g_\mathrm{tail}}{\gm + g_\mathrm{tail}} = \frac{1}{\gm^{-1} + R_\mathrm{degen}}.
+\gm' = \frac{I_\mathrm{out}}{V_\mathrm{in}} = \frac{1}{\gm^{-1} + R_\mathrm{degen}}.
 $$
+
+For the differential-pair half circuit in common-mode operation, the effective source degeneration is $R_\mathrm{degen} = 2/g_\mathrm{tail}$, yielding @eq-differential-pair-cm.
 
 When no degeneration resistor is used, then $\gm' = \gm$. If a degeneration of $R_\mathrm{degen} \gg \gm^{-1}$ is used then $\gm' = 1 / R_\mathrm{degen}$. This result is worth memorizing.
 
