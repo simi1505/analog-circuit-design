@@ -22,8 +22,7 @@ import schemdraw as sd
 import schemdraw.elements as elm
 sd.svgconfig.svg2 = False
 with sd.Drawing(canvas='svg') as d:
-    d.config(unit=2)
-    d.config(fontsize=16)
+    d.config(unit=2, fontsize=14, margin=0.5)
     
     M1 = elm.AnalogNFet(offset_gate=False).drop('source').theta(0).reverse().label(r'$g_\mathrm{m}$', loc='right')
     Rdegen = elm.Resistor().down().label(r'$R_\mathrm{degen}$')
