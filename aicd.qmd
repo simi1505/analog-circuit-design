@@ -42,7 +42,7 @@ format:
     papersize: a4
 ---
 
-{{< include /content/_macros.qmd >}}
+{{< include /content/_abbrv.qmd >}}
 {{< include /content/intro/_sec_intro.qmd >}}
 {{< include /content/first_steps/_sec_first_steps.qmd >}}
 {{< include /content/sizing/_sec_sizing.qmd >}}

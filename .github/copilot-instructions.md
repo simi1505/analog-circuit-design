@@ -8,7 +8,7 @@ Educational material for intermediate-level MOSFET analog circuit design course 
 ### Content Organization
 - `aicd.qmd` - Main document orchestrator that includes all sections via `{{< include >}}`
 - `content/*/` - Modular Quarto chapters (intro, sizing, current_mirror, ota_basic, etc.)
-- `content/_macros.qmd` - LaTeX macros for circuit notation (e.g., `\VDD`, `\VGS`, `\gmid`) included in all documents
+- `content/_abbrv.qmd` - LaTeX macros for circuit notation (e.g., `\VDD`, `\VGS`, `\gmid`) included in all documents
 - `gmid/*.ipynb` - Python Jupyter notebooks for MOSFET sizing using gm/ID methodology
 - `xschem/*.sch` - Circuit schematics with embedded ngspice simulation commands
 - `cace/*.yaml` - CACE characterization specs for circuit validation
@@ -52,7 +52,7 @@ See `gmid/sizing_basic_ota.ipynb` pattern:
 - Symbols: `circuit_name.sym` for hierarchical blocks
 - Notebooks: `sizing_<circuit>.ipynb` or `techsweep_<process>_<device>.ipynb`
 
-### LaTeX Notation (from _macros.qmd)
+### LaTeX Notation (from _abbrv.qmd)
 Use custom commands consistently:
 - Voltages: `\VDD`, `\VGS`, `\VDS` (uppercase subscripts for DC/large-signal)
 - Small-signal: `\vgs`, `\vds` (lowercase for AC)
@@ -85,7 +85,7 @@ vgs_m12 = lv_nmos.look_upVGS(GM_ID=gm_id_m12, L=l_12, VDS=0.75, VSB=0.0)
 
 ## Key Files for Understanding
 - [_quarto.yml](_quarto.yml) - Build configuration, website structure
-- [content/_macros.qmd](content/_macros.qmd) - Standard notation/LaTeX commands
+- [content/_abbrv.qmd](content/_abbrv.qmd) - Standard notation/LaTeX commands
 - [gmid/sizing_basic_ota.ipynb](gmid/sizing_basic_ota.ipynb) - Reference sizing methodology
 - [xschem/ota-5t.sch](xschem/ota-5t.sch) - Basic 5-transistor OTA example circuit
 - [cace/voltage-buffer-ota.yaml](cace/voltage-buffer-ota.yaml) - CACE characterization template
